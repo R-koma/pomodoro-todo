@@ -1,11 +1,22 @@
 import { useEffect, useState } from 'react';
+import PostCard from './components/PostCard';
+import PropTypes from 'prop-types';
+
+ErrorMessage.propTypes = {
+  message: PropTypes.string,
+};
 
 export default function App() {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setIsLoading(true);
+        setError('');
+
         const res = await fetch('http://localhost:3000/posts');
 
         if (!res.ok)
@@ -13,23 +24,41 @@ export default function App() {
 
         const data = await res.json();
         setPosts(data);
+        setError('');
       } catch (err) {
-        console.log(err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchPosts();
   }, []);
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">ミニSNS</h1>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h3>{post.title}</h3>
-          </li>
-        ))}
-      </ul>
+    <div className="flex flex-col items-center justify-center">
+      <h1 className="m-4 text-3xl font-bold underline">ミニSNS</h1>
+      {isLoading && <Loader />}
+      {!isLoading && !error && (
+        <ul>
+          {posts.map((post) => (
+            <PostCard post={post} key={post.id} />
+          ))}
+        </ul>
+      )}
+      {error && <ErrorMessage message={error} />}
     </div>
+  );
+}
+
+function Loader() {
+  return <p>Loading...</p>;
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p>
+      <span>⛔️</span>
+      {message}
+    </p>
   );
 }
