@@ -79,6 +79,21 @@ export default function NewPost() {
             onChange={(e) => setBody(e.target.value)}
             className="w-full resize-y rounded border p-2"
           />
+          {errors.body && (
+            <p className="text-sm text-red-500">{errors.body}</p>
+          )}
+        </div>
+        <div>
+          <label className="mb-1 block font-medium" htmlFor="body">
+            本文
+          </label>
+          <textarea
+            id="body"
+            rows={5}
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            className="w-full resize-y rounded border p-2"
+          />
         </div>
         <button
           type="submit"
