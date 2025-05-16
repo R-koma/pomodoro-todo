@@ -4,35 +4,42 @@
       "id": 1,
       "title": "はじめまして！",
       "body": "このミニSNSタイムラインアプリの最初の投稿です。CRUD 機能の動作確認に使ってください。",
-      "createdAt": "2025-05-01T09:00:00Z",
+      "createdAt": "2025/5/01",
       "likes": 2
     },
     {
       "id": 2,
       "title": "React を学ぼう",
       "body": "今日は React の基礎を復習しました。useState と useEffect の動きを掴むのが大事ですね！",
-      "createdAt": "2025-05-03T14:30:00Z",
+      "createdAt": "2025/5/03",
       "likes": 5
     },
     {
       "id": 3,
       "title": "json-server の活用",
       "body": "モック API として json-server を使うと、簡単に CRUD のテストができます。DB は db.json だけでOK。",
-      "createdAt": "2025-05-05T08:15:00Z",
+      "createdAt": "2025/5/05",
       "likes": 1
     },
     {
       "id": 4,
       "title": "ダークモード切替",
       "body": "ThemeContext を使ってダーク/ライトモードを実装しました。localStorage に保存してリロードでも維持します。",
-      "createdAt": "2025-05-10T18:45:00Z",
+      "createdAt": "2025/5/10",
       "likes": 3
     },
     {
       "id": 5,
       "title": "バリデーション実装完了",
       "body": "タイトル必須＆50文字制限、本文必須のバリデーションを組み込みました。エラー表示も動いています！",
-      "createdAt": "2025-05-12T12:00:00Z",
+      "createdAt": "2025/5/12",
+      "likes": 0
+    },
+    {
+      "id": "ab05",
+      "title": "a",
+      "body": "a",
+      "createdAt": "2025/5/17",
       "likes": 0
     }
   ]

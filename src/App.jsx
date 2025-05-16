@@ -1,64 +1,25 @@
-import { useEffect, useState } from 'react';
-import PostCard from './components/PostCard';
-import PropTypes from 'prop-types';
-
-ErrorMessage.propTypes = {
-  message: PropTypes.string,
-};
+import { BrowserRouter, Route, Routes, Link } from 'react-router';
+import Home from './pages/Home';
+import NewPost from './pages/NewPost';
 
 export default function App() {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setIsLoading(true);
-        setError('');
-
-        const res = await fetch('http://localhost:3000/posts');
-
-        if (!res.ok)
-          throw new Error('Something went wrong with fetching posts');
-
-        const data = await res.json();
-        setPosts(data);
-        setError('');
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchPosts();
-  }, []);
-
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="m-4 text-3xl font-bold underline">ミニSNS</h1>
-      {isLoading && <Loader />}
-      {!isLoading && !error && (
-        <ul>
-          {posts.map((post) => (
-            <PostCard post={post} key={post.id} />
-          ))}
-        </ul>
-      )}
-      {error && <ErrorMessage message={error} />}
-    </div>
-  );
-}
-
-function Loader() {
-  return <p>Loading...</p>;
-}
-
-function ErrorMessage({ message }) {
-  return (
-    <p>
-      <span>⛔️</span>
-      {message}
-    </p>
+    <BrowserRouter>
+      <header className="flex justify-between p-4 shadow">
+        <h1 className="text-lg font-bold">
+          <Link to="/">Mini SNS</Link>
+        </h1>
+        <Link
+          to="/new"
+          className="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600"
+        >
+          投稿
+        </Link>
+      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/new" element={<NewPost />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
