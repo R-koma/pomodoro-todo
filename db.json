@@ -15,20 +15,6 @@
       "likes": 0
     },
     {
-      "id": "3",
-      "title": "json-server の活用事例deす",
-      "body": "モック API として json-server を使うと、簡単に CRUD のテストができます。DB は db.json だけでOK。",
-      "createdAt": "2025/5/05",
-      "likes": 1
-    },
-    {
-      "id": "4",
-      "title": "ダークモード切替",
-      "body": "ThemeContext を使ってダーク/ライトモードを実装しました。localStorage に保存してリロードでも維持します。",
-      "createdAt": "2025/5/10",
-      "likes": 3
-    },
-    {
       "id": "5",
       "title": "バリデーション実装完了",
       "body": "タイトル必須＆50文字制限、本文必須のバリデーションを組み込みました。エラー表示も動いています！",
