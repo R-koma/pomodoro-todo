@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
-import PropTypes from 'prop-types';
-
-ErrorMessage.propTypes = {
-  message: PropTypes.string,
-};
+import Loader from '../components/Loader';
+import ErrorMessage from '../components/ErrorMessage';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -18,7 +15,7 @@ export default function Home() {
         setError('');
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE}?_sort=createdAt&_order=desc`,
+          `${import.meta.env.VITE_API_BASE}/posts?_sort=createdAt&_order=desc`,
         );
 
         if (!res.ok)
@@ -49,18 +46,5 @@ export default function Home() {
       )}
       {error && <ErrorMessage message={error} />}
     </div>
-  );
-}
-
-function Loader() {
-  return <p>Loading...</p>;
-}
-
-function ErrorMessage({ message }) {
-  return (
-    <p>
-      <span>⛔️</span>
-      {message}
-    </p>
   );
 }
