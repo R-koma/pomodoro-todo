@@ -1,6 +1,8 @@
-import { BrowserRouter, Route, Routes, Link } from 'react-router';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import NewPost from './pages/NewPost';
+import PostDetail from './pages/PostDetail';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -19,6 +21,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<NewPost />} />
+        <Route path="/posts/:id" element={<PostDetail />} />
+        <Route path="/404" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

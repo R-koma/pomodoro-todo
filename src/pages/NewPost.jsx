@@ -25,7 +25,7 @@ export default function NewPost() {
 
     setSubmitting(true);
     try {
-      const res = await fetch(import.meta.env.VITE_API_BASE, {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
