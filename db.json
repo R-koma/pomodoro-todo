@@ -2,21 +2,21 @@
   "posts": [
     {
       "id": "1",
-      "title": "はじめまして！",
+      "title": "はじめまして！!!!!!!!!!!!!!",
       "body": "このミニSNSタイムラインアプリの最初の投稿です。CRUD 機能の動作確認に使ってください。",
-      "createdAt": "2025/5/01",
-      "likes": 2
+      "createdAt": "2025/5/18",
+      "likes": 0
     },
     {
       "id": "2",
-      "title": "React を学ぼう",
+      "title": "React を学ぼうyo",
       "body": "今日は React の基礎を復習しました。useState と useEffect の動きを掴むのが大事ですね！",
-      "createdAt": "2025/5/03",
-      "likes": 5
+      "createdAt": "2025/5/18",
+      "likes": 0
     },
     {
       "id": "3",
-      "title": "json-server の活用",
+      "title": "json-server の活用事例deす",
       "body": "モック API として json-server を使うと、簡単に CRUD のテストができます。DB は db.json だけでOK。",
       "createdAt": "2025/5/05",
       "likes": 1

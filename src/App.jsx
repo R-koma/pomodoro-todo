@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import NewPost from './pages/NewPost';
 import PostDetail from './pages/PostDetail';
 import NotFound from './pages/NotFound';
+import EditPost from './pages/EditPost';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<NewPost />} />
         <Route path="/posts/:id" element={<PostDetail />} />
+        <Route path="/posts/:id/edit" element={<EditPost />} />
         <Route path="/404" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
