@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import Loader from '../components/Loader';
 import ErrorMessage from '../components/ErrorMessage';
 
@@ -8,6 +8,7 @@ export default function PostDetail() {
   const [post, setPost] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -34,6 +35,23 @@ export default function PostDetail() {
     fetchPost();
   }, [id]);
 
+  async function handleDelete(e) {
+    e.preventDefault();
+
+    setIsLoading(true);
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/posts/${id}`, {
+        method: 'DELETE',
+      });
+      if (!res.ok) throw new Error('Something went wrong with handleDelete');
+      navigate('/');
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   if (isLoading) return <Loader />;
   if (error === 'not_found') return <Navigate to="/404" replace />;
   if (error) return <ErrorMessage message={error} />;
@@ -45,10 +63,16 @@ export default function PostDetail() {
         <h1 className="text-3xl font-bold">{post.title}</h1>
         <Link
           to={`/posts/${id}/edit`}
-          className="ml-4 h-fit rounded bg-gray-500 px-2 py-1 text-sm text-white hover:bg-gray-600"
+          className="h-fit rounded bg-gray-500 px-2 py-1 text-sm text-white hover:bg-gray-600"
         >
           ✏️
         </Link>
+        <button
+          onClick={handleDelete}
+          className="h-fit rounded bg-red-500 px-2 py-1 text-sm text-white hover:bg-gray-600"
+        >
+          🗑️
+        </button>
       </div>
       <div className="mb-6 flex items-center justify-between text-gray-500">
         <time>{new Date(post.createdAt).toLocaleDateString('ja-JP')}</time>
