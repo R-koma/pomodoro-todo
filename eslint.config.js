@@ -11,11 +11,41 @@ export default [
 
   js.configs.recommended,
 
+  // Cypressテストファイル用の設定
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['cypress/**/*.{js,jsx,ts,tsx}', 'cypress.config.{js,ts}'],
     languageOptions: {
       ecmaVersion: 'latest',
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        cy: 'readonly',
+        Cypress: 'readonly',
+        describe: 'readonly',
+        it: 'readonly',
+        beforeEach: 'readonly',
+        expect: 'readonly',
+        assert: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '^_',
+          argsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+
+  // React用の設定
+  {
+    files: ['src/**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.browser,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -34,13 +64,9 @@ export default [
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       ...a11y.configs.strict.rules,
-
       'prettier/prettier': 'error',
-
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
-
       'react/react-in-jsx-scope': 'off',
-
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
